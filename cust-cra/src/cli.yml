@@ -1,0 +1,16 @@
+name: cust-cra
+version: "0.1"
+author: Charles Desbiens <therealcharlesdesbiens@gmail.com>
+about: Automates the process of adding tools to projects created using create-react-app.
+args:
+    - TOOLS:
+        help: List of tools to add to the app.
+        short: t
+        long: tools
+        multiple: true
+        takes_value: true
+        required: true
+        index: 1
+        possible_values:
+          - cypress
+          - tailwind
