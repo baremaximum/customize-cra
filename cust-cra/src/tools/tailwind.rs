@@ -1,3 +1,5 @@
+use ansi_term::Color::Cyan;
+
 pub fn install_tailwind() {
-    println!("installing tailwind")
+    println!("{}", Cyan.paint("Installing Tailwind..."));
 }
