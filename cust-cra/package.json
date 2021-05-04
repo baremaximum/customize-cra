@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "dev": "concurrently -p \"[{name}]\" \"yarn run start*\"",
-    "start": "react-scripts -r @cypress/instrument-cra start",
-    "start:cypress": "cypress open"
-  }
-}
