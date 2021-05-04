@@ -1,7 +1,7 @@
 use crate::util::files;
 use crate::yarn;
 use ansi_term::Color::{Cyan, Green, Red};
-use std::{fs, process};
+use std::process;
 
 pub fn install_cypress() {
     println!("{}", Cyan.paint("Installing Cypress..."));
@@ -12,6 +12,7 @@ pub fn install_cypress() {
     // run yarn commands
     let status = yarn::run_yarn_commands(vec![
         "-D",
+        "add",
         "cypress",
         "concurrently",
         "@cypress/instrument-cra",
@@ -26,14 +27,7 @@ pub fn install_cypress() {
         process::exit(1)
     }
 
-    // write to cypress config files
-    fs::write("cypress/plugins/index.js", PLUGINS_INDEX)
-        .expect("could not write to cypress/plugins/index.js");
-
-    fs::write("cypress/support/index.js", SUPPORT_INDEX)
-        .expect("could not write to cypress/support.index.js");
-
-    let success_message = Green.paint("Cypress installation complete!");
+    let success_message = Green.paint("Cypress installation complete! Remember you still need to change cypress configs for coverage reports to work");
     println!("{}", success_message);
 }
 
@@ -66,16 +60,6 @@ fn change_package() {
     files::save_package(package).expect("an error occured while trying to save");
     println!("{}", Cyan.paint("package.json successfully modified!"));
 }
-
-const PLUGINS_INDEX: &str = r#"/// <reference types="cypress" />
-module.exports = (on, config) => {
-    require('@cypress/code-coverage/task')(on, config)
-    on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'))
-    return config
-  }"#;
-
-const SUPPORT_INDEX: &str = r#"import '@cypress/code-coverage/support'
-import './commands'"#;
 
 #[cfg(test)]
 mod tests {

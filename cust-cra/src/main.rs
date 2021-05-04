@@ -6,6 +6,7 @@ use cust_cra::yarn;
 use cust_cra::{cypress, tailwind};
 use std::path::Path;
 use std::process::exit;
+
 fn check_yarn() {
     // Need to call cmd first on Windows
     let status = yarn::run_yarn_commands(vec!["-v"]);
