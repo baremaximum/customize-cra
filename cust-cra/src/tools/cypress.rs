@@ -67,6 +67,7 @@ mod tests {
     use crate::util::test_utils;
 
     #[test]
+    #[serial]
     fn test_with_cypress_not_in_start() {
         test_utils::setup_json("react-scripts start");
 

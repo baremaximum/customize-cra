@@ -112,6 +112,7 @@ mod tests {
     use crate::util::test_utils;
 
     #[test]
+    #[serial]
     fn test_replace_react_scripts() {
         test_utils::setup_json("react-scripts start");
 

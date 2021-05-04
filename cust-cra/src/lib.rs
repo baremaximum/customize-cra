@@ -1,5 +1,9 @@
 #[macro_use]
 extern crate serde_json;
+
+#[allow(unused_imports)]
+#[macro_use]
+extern crate serial_test;
 mod tools;
 mod util;
 
